@@ -16,7 +16,7 @@ import XCTest
 @testable import SpotifyLogin
 
 class SpotifyLoginTests: XCTestCase {
-
+    
     func testURLParsing() {
         let urlBuilder = URLBuilder(clientID: "id",
                                     clientSecret: "secret",
@@ -33,7 +33,7 @@ class SpotifyLoginTests: XCTestCase {
         XCTAssertTrue(parsedInvalidURL.error)
         XCTAssertNil(parsedInvalidURL.code)
     }
-
+    
     func testCanHandleURL() {
         let urlBuilder = URLBuilder(clientID: "id",
                                     clientSecret: "secret",
@@ -46,7 +46,7 @@ class SpotifyLoginTests: XCTestCase {
         let invalidURL = URL(string: "http://spotify.com")!
         XCTAssertFalse(urlBuilder.canHandleURL(invalidURL))
     }
-
+    
     func testAuthenticationURL() {
         let urlBuilder = URLBuilder(clientID: "id",
                                     clientSecret: "secret",
@@ -57,30 +57,31 @@ class SpotifyLoginTests: XCTestCase {
         let appAuthenticationURL = urlBuilder.authenticationURL(type: .app, scopes: [.streaming])
         XCTAssertNotNil(appAuthenticationURL)
     }
-
+    
     func testSessionValid() {
-        let validSession = Session(username: "userName",
+        let user = createMockUser()
+        let validSession = Session(user: user,
                                    accessToken: "accessToken",
                                    refreshToken: "refreshToken",
                                    expirationDate: Date(timeIntervalSinceNow: 100))
         XCTAssertTrue(validSession.isValid())
-        let inalidSession = Session(username: "userName",
-                                    accessToken: "accessToken",
-                                    refreshToken: "refreshToken",
-                                    expirationDate: Date(timeIntervalSinceNow: -100))
-        XCTAssertFalse(inalidSession.isValid())
+        let invalidSession = Session(user: user,
+                                     accessToken: "accessToken",
+                                     refreshToken: "refreshToken",
+                                     expirationDate: Date(timeIntervalSinceNow: -100))
+        XCTAssertFalse(invalidSession.isValid())
     }
-
-    func testUsername() {
-        let testUsername = "fakeUser"
-        let session = Session(username: testUsername,
+    
+    func testUser() {
+        let testUser = createMockUser()
+        let session = Session(user: testUser,
                               accessToken: "accessToken",
                               refreshToken: "refreshToken",
                               expirationDate: Date())
         SpotifyLogin.shared.session = session
-        XCTAssertEqual(SpotifyLogin.shared.username, testUsername)
+        XCTAssertEqual(SpotifyLogin.shared.displayName, testUser.displayName)
     }
-
+    
     func testGetToken() {
         let emptySessionExpectation = expectation(description: "token expectation")
         SpotifyLogin.shared.session = nil
@@ -90,10 +91,12 @@ class SpotifyLoginTests: XCTestCase {
             emptySessionExpectation.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
-
+        
         let unconfiguredSessionExpectation = expectation(description: "token expectation")
         let testToken = "fakeToken"
-        let tokenSession = Session(username: "testUsername",
+        let testUser = createMockUser()
+        
+        let tokenSession = Session(user: testUser,
                                    accessToken: testToken,
                                    refreshToken: "refreshToken",
                                    expirationDate: Date.distantFuture)
@@ -103,7 +106,7 @@ class SpotifyLoginTests: XCTestCase {
             unconfiguredSessionExpectation.fulfill()
         }
         waitForExpectations(timeout: 0.5, handler: nil)
-
+        
         let validSessionExpectation = expectation(description: "configuration expectation")
         SpotifyLogin.shared.configure(clientID: "clientID",
                                       clientSecret: "clientSecret",
@@ -115,9 +118,10 @@ class SpotifyLoginTests: XCTestCase {
         }
         waitForExpectations(timeout: 0.5, handler: nil)
     }
-
+    
     func testLogout() {
-        let testSession = Session(username: "testUsername",
+        let testUser = createMockUser()
+        let testSession = Session(user: testUser,
                                   accessToken: "testToken",
                                   refreshToken: "refreshToken",
                                   expirationDate: Date.distantFuture)
@@ -125,5 +129,11 @@ class SpotifyLoginTests: XCTestCase {
         SpotifyLogin.shared.logout()
         XCTAssertNil(SpotifyLogin.shared.session)
     }
-
+    
+    // MARK: Helper methods
+    
+    func createMockUser(country: String = "US", displayName: String = "FakeUser", filterEnabled: Bool = true, profileUrl: String = "https://open.spotify.com/user/fakeuser", numberOfFollowers: Int = 20, endpointUrl: String = "https://api.spotify.com/v1/users/fakeuser", id: String = "12345") -> User {
+        return User(country: country, displayName: displayName, filterEnabled: filterEnabled, profileUrl: profileUrl, numberOfFollowers: numberOfFollowers, endpointUrl: endpointUrl, id: id)
+    }
+    
 }

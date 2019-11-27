@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E3759E3238E276D00928EDD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3759E2238E276D00928EDD /* User.swift */; };
 		34057DB21F2D27B8001D65AA /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34057DB11F2D27B8001D65AA /* Networking.swift */; };
 		340A6D581F306F4D004D16FC /* SpotifyLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340A6D571F306F4D004D16FC /* SpotifyLoginButton.swift */; };
 		340A6D601F307490004D16FC /* spotifylogo-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 340A6D5D1F307490004D16FC /* spotifylogo-32.png */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E3759E2238E276D00928EDD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		34057DB11F2D27B8001D65AA /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		340A6D571F306F4D004D16FC /* SpotifyLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpotifyLoginButton.swift; path = ../Sources/SpotifyLoginButton.swift; sourceTree = "<group>"; };
 		340A6D5D1F307490004D16FC /* spotifylogo-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spotifylogo-32.png"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				3479D2A41EC1B50900FF4EE2 /* Constants.swift */,
 				34057DB11F2D27B8001D65AA /* Networking.swift */,
+				1E3759E2238E276D00928EDD /* User.swift */,
 				BEF4FC601EC1AE810082945B /* Session.swift */,
 				E19201351F8CD66B00DA1AB1 /* SessionLocalStorage.swift */,
 				3432C7311F2DCBF30001E70D /* URLBuilder.swift */,
@@ -200,7 +203,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = Spotify;
 				TargetAttributes = {
 					3479D2841EC1ADEE00FF4EE2 = {
@@ -219,11 +222,11 @@
 			};
 			buildConfigurationList = 3479D27F1EC1ADEE00FF4EE2 /* Build configuration list for PBXProject "SpotifyLogin" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 3479D27B1EC1ADEE00FF4EE2;
 			productRefGroup = 3479D2861EC1ADEE00FF4EE2 /* Products */;
@@ -288,6 +291,7 @@
 				3479D2A31EC1B00B00FF4EE2 /* SpotifyLogin.swift in Sources */,
 				340A6D581F306F4D004D16FC /* SpotifyLoginButton.swift in Sources */,
 				3479D2A51EC1B50900FF4EE2 /* Constants.swift in Sources */,
+				1E3759E3238E276D00928EDD /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -324,6 +329,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -331,6 +337,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -374,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -384,6 +392,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -391,6 +400,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
